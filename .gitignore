@@ -1,3 +1,7 @@
+# Config removal
+
+config.yml
+
 # Logs
 logs
 *.log

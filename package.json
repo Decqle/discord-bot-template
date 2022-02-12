@@ -1,0 +1,29 @@
+{
+  "name": "discord-bot-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@stefcud/configyml": "^0.0.3",
+    "colors": "^1.4.0",
+    "discord.js": "^13.6.0",
+    "shelljs": "^0.8.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node --trace-warnings index.js",
+    "debug": "node --trace-warnings index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Decqle/discord-bot-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Decqle/discord-bot-template/issues"
+  },
+  "homepage": "https://github.com/Decqle/discord-bot-template#readme"
+}
