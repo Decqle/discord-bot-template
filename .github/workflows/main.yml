@@ -31,6 +31,8 @@ jobs:
       - name: Pull backup repo
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+        with:
+          path: ./
         run: git clone git@github.com:Decqle/discord-bot-template-backup.git backup
       
       - name: Clear backup repo
