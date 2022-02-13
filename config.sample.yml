@@ -1,11 +1,11 @@
 secrets:
-  token: "OTQyMTc3MjM3ODk2MTU5Mjgy.Yggs7g.XkjSRjQrFzXQTkzGXMSK5hMcE8M"
+  token: ""
 
 bot:
   intents:
     - "GUILDS"
   owners:
-    - "465883333159550980"
+    - "465883333159550980" # This is my own ID (Template creator) replace it.
 
 modules:
   enabled: true
