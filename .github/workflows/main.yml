@@ -30,6 +30,7 @@ jobs:
           repository: Decqle/discord-bot-template-backup
           ref: main
           path: backup
+          token: ${{ secrets.ACCESS_TOKEN }}
       
       - name: Move files to clone repo for backup
         working-directory: main
