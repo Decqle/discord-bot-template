@@ -2,7 +2,6 @@ const colors = require('colors')
 const config = require('@stefcud/configyml')
 const fs = require('fs');
 const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
-//t
 intents = []
 
 for(const intent in config.bot.intents) {
