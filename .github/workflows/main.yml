@@ -12,10 +12,6 @@ jobs:
         with:
           ref: main
           path: main
-
-      - name: Remove remote
-        working-directory: main
-        run: find . -type f | grep -i "\.git" | xargs rm
         
       - uses: actions/checkout@v2
       - name: Setup node
