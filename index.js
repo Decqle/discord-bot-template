@@ -1,7 +1,7 @@
 const colors = require('colors')
 const config = require('@stefcud/configyml')
 const fs = require('fs');
-const { Client, Collection, Intents } = require('discord.js');
+const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
 
 intents = []
 
@@ -15,8 +15,26 @@ const client = new Client({ intents: intents });
 async function startup() {
 
 
-    // Checks ./modules and recurs through all files in the directory to load them.
-    const modules = "nothing atm"
+    if(config.modules.enabled == true) {
+        // Get all events inside ./events
+        const moduleFiles = fs.readdirSync('./modules').filter(file => file.endsWith('.js'));
+
+        // Recur through eventFiles and load them all.
+        modules = {}
+        for (const file of moduleFiles) {
+            const moduler = require(`./modules/${file}`);
+            if(config.modules[file.replace(".js", "")].enabled == true) {
+                if(await moduler.load(client, config) == true) {
+                    console.log(colors.yellow(file.replace(".js", ""))+" loaded as type: "+colors.brightYellow("MODULE"))
+                    modules[file.replace(".js", "")] = moduler.load(client, config)
+                }else{
+                    console.log(colors.yellow(file.replace(".js", ""))+" failed to load as type: "+colors.brightYellow("MODULE"))
+                }
+            }
+        }
+    }else{
+        modules = {}
+    }
 
     // Get all events inside ./events
     const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
@@ -56,8 +74,12 @@ async function startup() {
         try {
             await command.execute(interaction, client);
         } catch (error) {
-            console.error(error);
-            await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+            console.error(colors.brightRed(error));
+            const errorembed = new MessageEmbed()
+            .setColor('#ff0000')
+            .setTitle('An error occured!')
+            .setDescription('An error occured on our end, The command failed to execute!')
+            await interaction.reply({ embeds: [errorembed], ephemeral: true });
         }
     });
     

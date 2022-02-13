@@ -1,2 +1,15 @@
+secrets:
+  token: "OTQyMTc3MjM3ODk2MTU5Mjgy.Yggs7g.XkjSRjQrFzXQTkzGXMSK5hMcE8M"
+
 bot:
-  token: ""
+  intents:
+    - "GUILDS"
+  owners:
+    - "465883333159550980"
+
+modules:
+  enabled: true
+  sentry.io:
+    enabled: false
+    dsn: ""
+    # Get the DSN at https://sentry.io.
