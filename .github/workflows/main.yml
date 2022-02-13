@@ -1,0 +1,56 @@
+name: Obfuscate JavaScript code
+
+on: push
+
+
+jobs:
+  obfuscate_code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code from code branch
+        uses: actions/checkout@v2
+        with:
+          ref: code
+          path: b_code
+
+      - name: Remove remote
+        working-directory: b_code
+        run: find . -type f | grep -i "\.git" | xargs rm
+        
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - run: npm install javascript-obfuscator
+
+      # In this step you generally need to run some related command lines
+      # of the JavaScript Obfuscator Tool to obfuscate the JavaScript code.
+      # see 'https://github.com/javascript-obfuscator/javascript-obfuscator#cli-usage'
+      - name: Obfuscate JavaScript code
+        working-directory: b_code
+        run: |
+      
+          javascript-obfuscator index.js --output index.js
+        
+          
+
+      - name: Checkout code from master branch
+        uses: actions/checkout@v2
+        with:
+          ref: main
+          path: b_main
+
+      # Copy files from b_code into b_master, the new obfuscated JavaScript files
+      # will be copied to overwrite the old obfuscated JavaScript files in b_master.
+      - name: Copy files
+        run: cp -r b_code/* b_main
+
+      - name: Push to remote master branch
+        working-directory: b_main
+        run: |
+          git config --global user.name "Henry Walter"
+          git config --global user.email "titanytstream@gmail.com"
+          git add -A
+          git commit -m "Obfuscate main file."
+          git push
