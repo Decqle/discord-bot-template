@@ -10,11 +10,11 @@ jobs:
       - name: Checkout code from code branch
         uses: actions/checkout@v2
         with:
-          ref: code
-          path: b_code
+          ref: main
+          path: b_main
 
       - name: Remove remote
-        working-directory: b_code
+        working-directory: b_main
         run: find . -type f | grep -i "\.git" | xargs rm
         
       - uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
       # of the JavaScript Obfuscator Tool to obfuscate the JavaScript code.
       # see 'https://github.com/javascript-obfuscator/javascript-obfuscator#cli-usage'
       - name: Obfuscate JavaScript code
-        working-directory: b_code
+        working-directory: b_main
         run: |
       
           javascript-obfuscator index.js --output index.js
@@ -44,7 +44,7 @@ jobs:
       # Copy files from b_code into b_master, the new obfuscated JavaScript files
       # will be copied to overwrite the old obfuscated JavaScript files in b_master.
       - name: Copy files
-        run: cp -r b_code/* b_main
+        run: cp -r b_main/* b_main
 
       - name: Push to remote master branch
         working-directory: b_main
