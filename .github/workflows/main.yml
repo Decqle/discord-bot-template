@@ -11,10 +11,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
-          path: b_main
+          path: ./
 
       - name: Remove remote
-        working-directory: b_main
+        working-directory: ./
         run: find . -type f | grep -i "\.git" | xargs rm
         
       - uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
       # of the JavaScript Obfuscator Tool to obfuscate the JavaScript code.
       # see 'https://github.com/javascript-obfuscator/javascript-obfuscator#cli-usage'
       - name: Obfuscate JavaScript code
-        working-directory: b_main
+        working-directory: ./
         run: |
       
           javascript-obfuscator index.js --output index.js
@@ -39,10 +39,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
-          path: b_main
+          path: ./
 
       - name: Push to remote master branch
-        working-directory: b_main
+        working-directory: ./
         run: |
           git config --global user.name "Henry Walter"
           git config --global user.email "titanytstream@gmail.com"
