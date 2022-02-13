@@ -23,12 +23,17 @@ async function startup() {
         modules = {}
         for (const file of moduleFiles) {
             const moduler = require(`./modules/${file}`);
-            if(config.modules[file.replace(".js", "")].enabled == true) {
+            if(config.modules.hasOwnProperty(file.replace(".js", "")) && config.modules[file.replace(".js", "")].enabled == true) {
                 if(await moduler.load(client, config) == true) {
                     console.log(colors.yellow(file.replace(".js", ""))+" loaded as type: "+colors.brightYellow("MODULE"))
                     modules[file.replace(".js", "")] = moduler.load(client, config)
                 }else{
                     console.log(colors.yellow(file.replace(".js", ""))+" failed to load as type: "+colors.brightYellow("MODULE"))
+                }
+            }else{
+                if(!config.modules.hasOwnProperty(file.replace(".js", ""))) {
+                    console.log(colors.yellow(file.replace(".js", ""))+`'s config options have not been defined in config.yml! (${colors.brightYellow("MODULE")})`)
+                    require("process").exit()
                 }
             }
         }
