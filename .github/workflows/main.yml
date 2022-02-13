@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "14"
-      - run: npm install javascript-obfuscator
+      - run: npm install -g javascript-obfuscator
 
       # In this step you generally need to run some related command lines
       # of the JavaScript Obfuscator Tool to obfuscate the JavaScript code.
