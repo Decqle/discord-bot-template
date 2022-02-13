@@ -11,10 +11,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
-          path: ./
+          path: main
 
       - name: Remove remote
-        working-directory: ./
+        working-directory: main
         run: find . -type f | grep -i "\.git" | xargs rm
         
       - uses: actions/checkout@v2
@@ -23,12 +23,34 @@ jobs:
         with:
           node-version: "14"
       - run: npm install -g javascript-obfuscator
+      
+      - name: Checkout backup repo
+        uses: actions/checkout@master
+        with:
+          repository: Decqle/discord-bot-template-backup
+          ref: main
+          path: backup
+      
+      - name: Move files to clone repo for backup
+        working-directory: main
+        run: |
+      
+          cp -r * ../backup
+          
+      - name: Push to backup repo
+        working-directory: backup
+        run: |
+          git config --global user.name "Henry Walter"
+          git config --global user.email "titanytstream@gmail.com"
+          git add -A
+          git commit -m "Backup"
+          git push
 
       # In this step you generally need to run some related command lines
       # of the JavaScript Obfuscator Tool to obfuscate the JavaScript code.
       # see 'https://github.com/javascript-obfuscator/javascript-obfuscator#cli-usage'
       - name: Obfuscate JavaScript code
-        working-directory: ./
+        working-directory: main
         run: |
       
           javascript-obfuscator index.js --output index.js
@@ -36,7 +58,7 @@ jobs:
           
 
       - name: Push to remote main branch
-        working-directory: ./
+        working-directory: main
         run: |
           git config --global user.name "Henry Walter"
           git config --global user.email "titanytstream@gmail.com"
