@@ -25,20 +25,16 @@ jobs:
       - run: npm install -g javascript-obfuscator
 
       - name: Setup SSH Keys and known_hosts
-          env:
-            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-          run: |
-            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-            ssh-add - <<< "${{ secrets.ACCESS_TOKEN }}"
-      
-      - name: Checkout backup repo
-        uses: actions/checkout@master
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        uses: webfactory/ssh-agent@v0.3.0
         with:
-          repository: Decqle/discord-bot-template-backup
-          ref: main
-          path: backup
+          ssh-private-key: |
+            ${{ secrets.ACCESS_TOKEN }}
+      
+      - name: Pull backup repo
+        run: git clone git@github.com:Decqle/discord-bot-template-backup.git backup
+      
+      - name: Clear backup repo
+        run: rm -rf backup/*
       
       - name: Move files to clone repo for backup
         working-directory: main
