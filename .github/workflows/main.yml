@@ -35,13 +35,7 @@ jobs:
         
           
 
-      - name: Checkout code from main branch
-        uses: actions/checkout@v2
-        with:
-          ref: main
-          path: ./
-
-      - name: Push to remote master branch
+      - name: Push to remote main branch
         working-directory: ./
         run: |
           git config --global user.name "Henry Walter"
