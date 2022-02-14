@@ -13,3 +13,12 @@ modules:
     enabled: false
     dsn: ""
     # Get the DSN at https://sentry.io.
+  dashboard:
+    enabled: false
+    port: ""
+    redirect_url: "/callback"
+    url: "example.com"
+    ssl:
+      enabled: false
+      cert: "cert.pem"
+      key: "key.pem"

@@ -2,13 +2,6 @@ const colors = require('colors')
 const config = require('@stefcud/configyml')
 const fs = require('fs');
 const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
-intents = []
-
-for(const intent in config.bot.intents) {
-    intents.push(Intents.FLAGS[config.bot.intents[intent]])
-}
-
-const client = new Client({ intents: intents });
 
 async function licenseboot() {
     const yaml = require('js-yaml');
@@ -103,4 +96,13 @@ async function startup() {
 
 
 }
-startup()
+
+intents = []
+
+for(const intent in config.bot.intents) {
+    intents.push(Intents.FLAGS[config.bot.intents[intent]])
+    if(intents.length >= config.bot.intents.length) {
+        client = new Client({ intents: intents });
+        startup()
+    }
+}
