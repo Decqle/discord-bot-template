@@ -15,6 +15,6 @@ jobs:
         uses: deep5050/memes-on-issues-action@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          issue_msg: 'Hi {{author}} enjoy this {{meme}} while you wait for a response.' # change accordingly
-          PR_msg: 'Hi {{author}} enjoy this {{meme}} while you wait for a response.' # change accordingly
+          issue_msg: 'Sup, {{author}}! Enjoy this meme while you wait for a response. {{meme}}' # change accordingly
+          PR_msg: 'Sup, {{author}}! Enjoy this meme while you wait for a response. {{meme}}' # change accordingly
           allow_owner: true # get meme on your own issue :)
