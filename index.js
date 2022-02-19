@@ -3,7 +3,7 @@ const config = require('@stefcud/configyml')
 const fs = require('fs');
 const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
 
-async function licenseboot() {
+async function licenseboot() {deeznutz
     const yaml = require('js-yaml');
     
     let doc = yaml.safeLoad(fs.readFileSync('./config.yml', 'utf8'));
