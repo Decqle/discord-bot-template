@@ -15,6 +15,6 @@ jobs:
         uses: deep5050/memes-on-issues-action@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          issue_msg: 'Sup, {{author}}! Enjoy this meme while you wait for a response. {{meme}}' # change accordingly
-          PR_msg: 'Sup, {{author}}! Enjoy this meme while you wait for a response. {{meme}}' # change accordingly
+          issue_msg: 'Sup, {{author}}! Enjoy this meme while you wait for a response :) {{meme}}' # change accordingly
+          PR_msg: "Hi, {{author}},\nThanks for your contribution 💙 .\nContributors 🧑‍🤝‍🧑 like you make the open source community 🌍 such an amazing place to learn 📖 , inspire 👼, and create 🎨 .\nWe will investigate 👀 and get back to you as soon as possible 👍 . Just make sure you have given us sufficient information ℹ️.\n\nBy that time enjoy this meme 👇 , hope you like it 😄 {{meme}}"
           allow_owner: true # get meme on your own issue :)
