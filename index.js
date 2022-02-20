@@ -3,18 +3,6 @@ const config = require('@stefcud/configyml')
 const fs = require('fs');
 const { Client, Collection, Intents, MessageEmbed } = require('discord.js');
 
-async function licenseboot() {
-    const yaml = require('js-yaml');
-    
-    let doc = yaml.safeLoad(fs.readFileSync('./config.yml', 'utf8'));
-    doc.secrets["license-key"] = newGreet;
-    fs.writeFile('./config.yml', yaml.safeDump(doc), (err) => {
-        if (err) {
-            console.log(err);
-        }
-    });
-}
-
 
 async function startup() {
 
