@@ -16,7 +16,5 @@ exports.load = async function(client, config){
       tracesSampleRate: 1.0,
     });
 
-    var random = Math.floor(Math.random(1, 2))
-
     return true
 };

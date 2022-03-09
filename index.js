@@ -51,14 +51,17 @@ async function startup() {
     client.commands = new Collection();
 
     // Get all commands inside ./commands
-    const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+    const commandFolders = fs.readdirSync('./commands')
     
     // Load all commands into the Collection() variable
-    for (const file of commandFiles) {
-        const command = require(`./commands/${file}`);
-        client.commands.set(command.data.name, command);
-
-        console.log(colors.yellow(file.replace(".js", ""))+".js loaded as type: "+colors.brightBlue("COMMAND"))
+    for (const file of commandFolders) {
+        const commandFiles = fs.readdirSync('./commands/'+file).filter(file => file.endsWith('.js'));
+        for (const file2 of commandFiles) {
+            const command = require(`./commands/${file}/${file2}`);
+            client.commands.set(command.data.name, command);
+    
+            console.log(colors.yellow(file2.replace(".js", ""))+".js loaded as type: "+colors.brightBlue("COMMAND"))
+        }
     }
     
     client.on('interactionCreate', async interaction => {
