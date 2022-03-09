@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { clientId, guildId, token } = require('./config.json');
+const config = require('@stefcud/configyml')
 
 const commands = [];
 const commandFolders = fs.readdirSync('./commands')
@@ -14,8 +14,8 @@ for (const file of commandFolders) {
     }
 }
 
-const rest = new REST({ version: '9' }).setToken(token);
+const rest = new REST({ version: '9' }).setToken(config.secrets.token);
 
-rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
+rest.put(Routes.applicationGuildCommands(config.secrets.id, config.secrets.devguildid), { body: commands })
 	.then(() => console.log('Successfully registered application commands.'))
 	.catch(console.error);

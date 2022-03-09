@@ -1,5 +1,7 @@
 secrets:
   token: ""
+  id: ""
+  devguildid: ""
 
 bot:
   intents:
