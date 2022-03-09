@@ -16,7 +16,8 @@
     "test": "node --trace-warnings index.js",
     "debug": "node --trace-warnings index.js",
     "start": "node index.js",
-    "obfuscate": "javascript-obfuscator index.js --output index.js"
+    "deploy": "node deploy.js",
+    "update": "git pull -f"
   },
   "repository": {
     "type": "git",

@@ -64,28 +64,7 @@ async function startup() {
         }
     }
     
-    client.on('interactionCreate', async interaction => {
-        if (!interaction.isCommand()) return;
-    
-        const command = client.commands.get(interaction.commandName);
-    
-        if (!command) return;
-    
-        try {
-            await command.execute(interaction, client);
-        } catch (error) {
-            console.error(colors.brightRed(error));
-            const errorembed = new MessageEmbed()
-            .setColor('#ff0000')
-            .setTitle('An error occured!')
-            .setDescription('An error occured on our end, The command failed to execute!')
-            await interaction.reply({ embeds: [errorembed], ephemeral: true });
-        }
-    });
-    
     client.login(config.secrets.token);
-
-
 }
 
 intents = []
